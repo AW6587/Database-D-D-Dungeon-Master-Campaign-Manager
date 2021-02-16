@@ -6,4 +6,4 @@ Entity Relationship Diagram
 
 Relational Model Schema
 -----------------------
-![RM Schema](RM schema.png "RM Schema")
+![RM Schema](RM_schema.png "RM Schema")
