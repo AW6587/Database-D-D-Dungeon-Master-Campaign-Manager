@@ -1,0 +1,71 @@
+-- display items for a certain player's character
+
+
+-- display players who have been DMs on a campaign
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- find where each episode took place in a campaign
+SELECT E.Episode_num, E.Location_name 
+FROM EPISODE AS E, CAMPAIGN AS C
+WHERE E.Campaign_name = C. Campaign_name
+AND C.Campaign_name = " "
+
+-- show points of interest in a map
+SELECT P.Location_name
+FROM POINT_OF_INTEREST AS P, MAP AS M
+WHERE P.Map_name = M.Map_name
+AND M.Map_name = " "
+
+-- show what items a character has in a certain campaign
+SELECT I.Item_name, I.Value, I.Item_count
+FROM ITEM AS I, CHARACTER AS C, INCLUDE_CAMPAIGN_CHARACTER AS CC
+WHERE I.Character_name = C.Char_name
+AND C.Char_name = CC.Character_name
+AND CC.Campaign_name = " " 
+AND I.CHARACTER_NAME = " "
+
+-- show a character's items greater than a certain value
+SELECT I.Item_name, I.Item_count, I.Value
+FROM ITEM AS I, CHARACTER AS C
+WHERE C.Char_name = I.Character_name
+AND C.Char_name = " "
+AND I.Value > (int)
+
+-- show all characters a player has
+SELECT C.Char_name, C.Level
+FROM CHARACTER AS C, PLAYER AS P
+WHERE C.Player_id = P.Player_id
+AND P.Name = " "
+
+-- show all campaigns a player has DMed
+SELECT C.Campaign_name, C.Campaign_map_name
+FROM CAMPAIGN AS C, PLAYER AS P
+WHERE C.Player_id = P.Player_id
+AND P.Name = " "
+
+-- display players that have been in the club for at least a year
+SELECT Name, Phone_num, Email
+FROM PLAYER
+WHERE Join_date <= (SELECT (CURDATE() - INTERVAL 365 DAY))
+
+-- show names of players and their character names that are in a certain campaign
+SELECT P.Name, CH.Char_name
+FROM PLAYER AS P, CHARACTER AS CH, INCLUDE_CAMPAIGN_CHARACTER AS CAMP
+WHERE CAMP.Character_name = CH.Char_name
+AND CH.Player_id = P.Player_id
+AND CAMP.Campaign_name = " "
